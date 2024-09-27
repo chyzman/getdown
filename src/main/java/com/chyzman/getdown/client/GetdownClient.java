@@ -15,7 +15,7 @@ import java.util.Arrays;
 import static com.chyzman.getdown.Getdown.*;
 
 public class GetdownClient implements ClientModInitializer {
-    public static final KeyBinding CRAWL_KEYBIND = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.getdown.crawl", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_Z, KeyBinding.GAMEPLAY_CATEGORY));
+    public static final KeyBinding CRAWL_KEYBIND = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.getdown.crawl", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_Z, KeyBinding.MOVEMENT_CATEGORY));
 
     @Override
     public void onInitializeClient() {
