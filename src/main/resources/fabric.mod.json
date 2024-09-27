@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "id": "getdown",
+  "version": "${version}",
+
+  "name": "GetDown",
+  "description": "Press button. Get down.",
+  "authors": [
+    "chyzman"
+  ],
+  "contact": {},
+
+  "license": "LGPL-3.0",
+  "icon": "assets/getdown/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "com.chyzman.getdown.client.GetdownClient"
+    ],
+    "main": [
+      "com.chyzman.getdown.Getdown"
+    ],
+    "cardinal-components": [
+      "com.chyzman.getdown.Getdown"
+    ]
+  },
+
+  "mixins": [
+    "getdown.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}",
+    "owo": "*"
+  },
+
+  "custom": {
+    "cardinal-components": [
+      "getdown:player"
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.chyzman.getdown.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "common.PlayerEntityMixin"
+  ],
+  "client": [
+    "accessor.GameOptionsAccessor",
+    "client.AccessibilityOptionsScreenMixin",
+    "client.ControlsOptionsScreenMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
