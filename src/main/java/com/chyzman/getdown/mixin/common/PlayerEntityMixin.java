@@ -15,7 +15,7 @@ public class PlayerEntityMixin {
     @Inject(method = "updatePose", at = @At("HEAD"), cancellable = true)
     private void crawlNOW(CallbackInfo ci) {
         if (GETDOWN_PLAYER.get(this).crawling()) {
-            ((PlayerEntity)(Object)this).setPose(EntityPose.FALL_FLYING);
+            ((PlayerEntity)(Object)this).setPose(EntityPose.SWIMMING);
             ci.cancel();
         }
     }
