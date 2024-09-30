@@ -34,7 +34,8 @@
     "fabricloader": ">=${loader_version}",
     "fabric": "*",
     "minecraft": "${minecraft_version}",
-    "owo": "*"
+    "owo": "*",
+    "cardinal-components": "*"
   },
 
   "custom": {
