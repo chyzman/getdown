@@ -17,21 +17,21 @@ import static com.chyzman.getdown.Getdown.*;
 public class GetdownClient implements ClientModInitializer {
     public static final KeyBinding CRAWL_KEYBIND = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.getdown.crawl", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_Z, KeyBinding.MOVEMENT_CATEGORY));
 
+    public static boolean lastCrawlPressed = false;
+
     @Override
     public void onInitializeClient() {
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             var player = client.player;
             if (player == null) return;
             var component = GETDOWN_PLAYER.get(player);
+            var crawlPressed = CRAWL_KEYBIND.isPressed();
             if (CONFIG.crawlToggled()) {
-                if (CRAWL_KEYBIND.wasPressed()) {
-                    component.crawling(!component.crawling());
-                }
+                if (!lastCrawlPressed && crawlPressed) component.crawling(!component.crawling());
             } else {
-                if (CRAWL_KEYBIND.isPressed() != component.crawling()) {
-                    component.crawling(CRAWL_KEYBIND.isPressed());
-                }
+                if (crawlPressed != component.crawling()) component.crawling(crawlPressed);
             }
+            lastCrawlPressed = CRAWL_KEYBIND.isPressed();
         });
     }
 
