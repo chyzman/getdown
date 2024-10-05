@@ -1,6 +1,7 @@
 package com.chyzman.getdown.client;
 
 import com.chyzman.getdown.mixin.accessor.GameOptionsAccessor;
+import com.chyzman.getdown.network.Crawl;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
@@ -27,9 +28,13 @@ public class GetdownClient implements ClientModInitializer {
             var component = GETDOWN_PLAYER.get(player);
             var crawlPressed = CRAWL_KEYBIND.isPressed();
             if (CONFIG.crawlToggled()) {
-                if (!lastCrawlPressed && crawlPressed) component.crawling(!component.crawling());
+                if (!lastCrawlPressed && crawlPressed) {
+                    if (component.crawling(!component.crawling())) CHANNEL.clientHandle().send(new Crawl(component.crawling()));
+                }
             } else {
-                if (crawlPressed != component.crawling()) component.crawling(crawlPressed);
+                if (crawlPressed != component.crawling()) {
+                   if (component.crawling(crawlPressed)) CHANNEL.clientHandle().send(new Crawl(component.crawling()));
+                }
             }
             lastCrawlPressed = CRAWL_KEYBIND.isPressed();
         });
