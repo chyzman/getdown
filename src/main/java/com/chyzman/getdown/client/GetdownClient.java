@@ -7,7 +7,7 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.option.SimpleOption;
-import net.minecraft.client.util.InputUtil;
+import net.minecraft.client.option.StickyKeyBinding;
 import org.lwjgl.glfw.GLFW;
 
 import java.util.ArrayList;
@@ -16,9 +16,7 @@ import java.util.Arrays;
 import static com.chyzman.getdown.Getdown.*;
 
 public class GetdownClient implements ClientModInitializer {
-    public static final KeyBinding CRAWL_KEYBIND = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.getdown.crawl", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_Z, KeyBinding.MOVEMENT_CATEGORY));
-
-    public static boolean lastCrawlPressed = false;
+    public static final KeyBinding CRAWL_KEYBIND = KeyBindingHelper.registerKeyBinding(new StickyKeyBinding("key.getdown.crawl",GLFW.GLFW_KEY_Z,  KeyBinding.MOVEMENT_CATEGORY, CONFIG::crawlToggled));
 
     @Override
     public void onInitializeClient() {
@@ -27,16 +25,7 @@ public class GetdownClient implements ClientModInitializer {
             if (player == null) return;
             var component = GETDOWN_PLAYER.get(player);
             var crawlPressed = CRAWL_KEYBIND.isPressed();
-            if (CONFIG.crawlToggled()) {
-                if (!lastCrawlPressed && crawlPressed) {
-                    if (component.crawling(!component.crawling())) CHANNEL.clientHandle().send(new Crawl(component.crawling()));
-                }
-            } else {
-                if (crawlPressed != component.crawling()) {
-                   if (component.crawling(crawlPressed)) CHANNEL.clientHandle().send(new Crawl(component.crawling()));
-                }
-            }
-            lastCrawlPressed = CRAWL_KEYBIND.isPressed();
+            if (component.crawling(crawlPressed)) CHANNEL.clientHandle().send(new Crawl(component.crawling()));
         });
     }
 

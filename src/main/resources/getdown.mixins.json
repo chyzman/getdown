@@ -9,6 +9,7 @@
   "client": [
     "accessor.GameOptionsAccessor",
     "client.AccessibilityOptionsScreenMixin",
+    "client.ClientPlayerEntityMixin",
     "client.ControlsOptionsScreenMixin"
   ],
   "injectors": {
