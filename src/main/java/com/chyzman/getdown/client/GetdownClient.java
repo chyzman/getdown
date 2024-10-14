@@ -16,7 +16,7 @@ import java.util.Arrays;
 import static com.chyzman.getdown.Getdown.*;
 
 public class GetdownClient implements ClientModInitializer {
-    public static final KeyBinding CRAWL_KEYBIND = KeyBindingHelper.registerKeyBinding(new StickyKeyBinding("key.getdown.crawl",GLFW.GLFW_KEY_Z,  KeyBinding.MOVEMENT_CATEGORY, CONFIG::crawlToggled));
+    public static final KeyBinding CRAWL_KEYBIND = KeyBindingHelper.registerKeyBinding(new StickyKeyBinding("key.crawl",GLFW.GLFW_KEY_Z,  KeyBinding.MOVEMENT_CATEGORY, CONFIG::crawlToggled));
 
     @Override
     public void onInitializeClient() {
@@ -33,7 +33,7 @@ public class GetdownClient implements ClientModInitializer {
         var list = new ArrayList<>(Arrays.asList(options));
         var sprintToggleIndex = list.indexOf(gameOptions.getdown$getSprintToggledRef());
         list.add(sprintToggleIndex + 1, new SimpleOption<>(
-                "key.getdown.crawl",
+                "key.crawl",
                 SimpleOption.emptyTooltip(),
                 (optionText, value) -> value ? GameOptionsAccessor.getdown$getToggleKeyText() : GameOptionsAccessor.getdown$getHoldKeyText(),
                 SimpleOption.BOOLEAN,
