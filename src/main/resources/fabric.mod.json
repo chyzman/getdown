@@ -20,9 +20,6 @@
     ],
     "main": [
       "com.chyzman.getdown.Getdown"
-    ],
-    "cardinal-components": [
-      "com.chyzman.getdown.Getdown"
     ]
   },
 
@@ -33,13 +30,6 @@
   "depends": {
     "fabricloader": "*",
     "fabric": "*",
-    "minecraft": ">=${minecraft_version}",
-    "owo": "*"
-  },
-
-  "custom": {
-    "cardinal-components": [
-      "getdown:player"
-    ]
+    "minecraft": ">=${minecraft_version}"
   }
 }

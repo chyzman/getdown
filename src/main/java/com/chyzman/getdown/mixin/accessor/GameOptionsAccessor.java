@@ -13,11 +13,11 @@ public interface GameOptionsAccessor {
 
     @Accessor("TOGGLE_KEY_TEXT")
     static Text getdown$getToggleKeyText() {
-        throw new AssertionError();
+        throw new UnsupportedOperationException("Implemented by Mixin");
     }
 
     @Accessor("HOLD_KEY_TEXT")
     static Text getdown$getHoldKeyText() {
-        throw new AssertionError();
+        throw new UnsupportedOperationException("Implemented by Mixin");
     }
 }

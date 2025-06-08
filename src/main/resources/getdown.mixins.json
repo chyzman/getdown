@@ -10,7 +10,8 @@
     "accessor.GameOptionsAccessor",
     "client.AccessibilityOptionsScreenMixin",
     "client.ClientPlayerEntityMixin",
-    "client.ControlsOptionsScreenMixin"
+    "client.ControlsOptionsScreenMixin",
+    "client.GameOptionsMixin"
   ],
   "injectors": {
     "defaultRequire": 1
