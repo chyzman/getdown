@@ -28,8 +28,8 @@
   ],
 
   "depends": {
+    "minecraft": ">=${minecraft_version}",
     "fabricloader": "*",
-    "fabric": "*",
-    "minecraft": ">=${minecraft_version}"
+    "fabric": "*"
   }
 }
