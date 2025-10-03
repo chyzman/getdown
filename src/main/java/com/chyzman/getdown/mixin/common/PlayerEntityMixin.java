@@ -25,19 +25,28 @@ public abstract class PlayerEntityMixin extends Entity implements PlayerEntityDu
 //        return original || GETDOWN_PLAYER.get(this).crawling();
 //    }
 
-    @ModifyExpressionValue(method = "isSwimming", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;isSwimming()Z"))
+    @ModifyExpressionValue(
+        method = "isSwimming",
+        at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/PlayerLikeEntity;isSwimming()Z")
+    )
     private boolean makeCrawlingHappen(boolean original) {
         if (ignoreCrawling) return original;
         return original || CrawlState.isCrawling((PlayerEntity) (Object) this);
     }
 
-    @ModifyExpressionValue(method = "isSwimming", at = @At(value = "FIELD", target = "Lnet/minecraft/entity/player/PlayerAbilities;flying:Z"))
+    @ModifyExpressionValue(
+        method = "isSwimming",
+        at = @At(value = "FIELD", target = "Lnet/minecraft/entity/player/PlayerAbilities;flying:Z")
+    )
     private boolean allowCrawlingWhileFlying(boolean original) {
         if (ignoreCrawling) return original;
         return original && !CrawlState.isCrawling((PlayerEntity) (Object) this);
     }
 
-    @Redirect(method = "travel", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;isSwimming()Z"))
+    @Redirect(
+        method = "travel",
+        at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;isSwimming()Z")
+    )
     private boolean dontSinkWhileFlyCrawling(PlayerEntity instance) {
         return ((PlayerEntityDuck) instance).getdown$isActuallySwimming();
     }

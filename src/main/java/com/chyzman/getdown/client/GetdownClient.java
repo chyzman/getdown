@@ -29,8 +29,9 @@ public class GetdownClient implements ClientModInitializer {
     public static final KeyBinding CRAWL_KEYBIND = KeyBindingHelper.registerKeyBinding(new StickyKeyBinding(
         KEY,
         GLFW.GLFW_KEY_Z,
-        KeyBinding.MOVEMENT_CATEGORY,
-        CRAWL_TOGGLED::getValue
+        KeyBinding.Category.MOVEMENT,
+        CRAWL_TOGGLED::getValue,
+        true
     ));
 
     @Override
