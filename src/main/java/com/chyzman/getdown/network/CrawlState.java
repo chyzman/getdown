@@ -17,7 +17,7 @@ public record CrawlState(boolean crawling) implements CustomPayload {
 
     public static final CustomPayload.Id<CrawlState> PACKET_ID = new CustomPayload.Id<>(ID);
 
-    public static final PacketCodec<ByteBuf, CrawlState> PACKET_CODEC = PacketCodecs.BOOL.xmap(CrawlState::new, CrawlState::crawling);
+    public static final PacketCodec<ByteBuf, CrawlState> PACKET_CODEC = PacketCodecs.BOOLEAN.xmap(CrawlState::new, CrawlState::crawling);
 
     public static AttachmentType<CrawlState> TYPE = AttachmentRegistry.create(
         ID,
